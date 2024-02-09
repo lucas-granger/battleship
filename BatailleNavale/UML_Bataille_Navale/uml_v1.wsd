@@ -1,0 +1,175 @@
+@startuml Bataille Navale
+
+package bat_nav{
+    package bat_nav.interface{
+        class Jeu {
+            - joueur1 : Joueur
+            - joueur2 : Joueur
+            - joueurActif : Integer 
+            - gagnant : String
+            + init() : void
+            + play() : void
+            + end() : void
+            - setAdversaire : String
+            - setPremierJoueur : Integer 
+            - partieTerminee : boolean
+        }
+
+        class Joueur {
+            # pseudo : String
+            - plateau : Plateau
+            - tourActif: boolean
+            + placerBateaux(): void
+            + setBateauAction() : void
+            + setAction(): void
+            + setAttaque() : void
+            + setDeplacement() : void
+            + setPseudo(): void
+        }
+        class Plateau {
+            - cases: Case[][]
+            + placerBateau(bateau: Bateau, position: Position, orientation: Orientation)
+            + effectuerTir(Case: Case): ResultatTir
+        }
+
+        interface ICase{
+            + ajouterElem()
+            + supprElem()
+        }
+
+        class Case {
+            - x:Integer 
+            - y:Integer 
+            - id:Integer 
+            - caseTiree : boolean
+            + ajouterBateau(id:Integer ): void
+            + estTiree(): boolean
+            + updateCase(): void
+        }
+
+        Jeu *-- Joueur
+        Joueur <-- Plateau
+        Plateau *-- Case
+        ICase <|.. Case
+    }
+
+    package bat_nav.elem{
+        interface IElementJeu{}
+
+        abstract ElementJeu{
+            #resistance : Float
+        }
+
+        IElementJeu <|.. ElementJeu
+
+        package bat_nav.elem.bateaux{
+            abstract Bateau {
+                - id:Integer 
+                - name: String
+                - coord: Case[]
+                - sens: String
+                + estCoule : boolean
+                }
+
+            ElementJeu <|-- Bateau
+        
+            package bat_nav.elem.bateaux.civils{
+                abstract BateauCivil {}
+
+                class Voilier {}
+
+                BateauCivil <|-- Voilier
+                Bateau <|-- BateauCivil
+            }
+                
+            package bat_nav.elem.bateaux.militaires{
+                abstract BateauMilitaire {
+                    -puissAtk : Integer 
+                }
+
+                class PorteAvions {}
+
+                class Croiseur{}
+
+                class ContreTorpilleur{}
+
+                class SousMarin{}
+
+                class Torpilleur{}
+
+                BateauMilitaire <|-- PorteAvions
+                BateauMilitaire <|-- Croiseur
+                BateauMilitaire <|-- ContreTorpilleur
+                BateauMilitaire <|-- SousMarin
+                BateauMilitaire <|-- Torpilleur
+                Bateau <|-- BateauMilitaire
+            }
+        }
+
+        package bat_nav.elem.objets{
+            class BombeSousMarine {}
+
+            ElementJeu <|-- BombeSousMarine
+        }
+
+        package bat_nav.elem.comportement{
+            interface IAttaquant{
+                + aLAttaque(cible : IAttaquable)
+            }
+            interface IAttaquable{
+                + estAttaque(puiss : Integer )
+            }
+            interface IDeplacable{
+                +deplacer()
+            }
+
+            package bat_nav.elem.comportement.attaque{
+                interface ICompoAttaque{
+                    +attaquer(att : IAttaquant, cible : IAttaquable)
+                }
+                class MissileClassique{}
+                class MissileCroix{}
+                class FuseeEclairante {}
+                
+                ICompoAttaque <|.. MissileClassique
+                ICompoAttaque <|.. MissileCroix
+                ICompoAttaque <|.. FuseeEclairante
+            }
+
+            package bat_nav.elem.comportement.deplacement{
+                interface IDeplacement{
+                    +deplacer()
+                }
+                class Avancer{}
+                class Pivoter{}
+
+                IDeplacement <|.. Avancer
+                IDeplacement <|.. Pivoter
+            }
+        }
+
+        package bat_nav.elem.bonus{
+            interface IBateauMilitaire{}
+            abstract Bonus{}
+            class BonusDef{}
+            class BonusAtk{}
+
+            Bonus <|-- BonusAtk
+            Bonus <|-- BonusDef
+            IBateauMilitaire <|.. Bonus
+            BateauMilitaire <|.. IBateauMilitaire
+            Bonus o-- "leBateau 1" IBateauMilitaire
+
+        }
+    }
+}
+IAttaquable <|.. ElementJeu
+IDeplacable <|.. BateauMilitaire
+IAttaquant <|.. BateauMilitaire
+IAttaquant <|.. BombeSousMarine
+IElementJeu "elem *" <-- Case
+Case "coord 1..8"<-- ElementJeu
+SousMarin o-- "mesFusees 0 .. 2" FuseeEclairante
+BateauMilitaire o-- "compoDep 1" IDeplacement
+BateauMilitaire o-- "compoAtk 1" ICompoAttaque
+@enduml

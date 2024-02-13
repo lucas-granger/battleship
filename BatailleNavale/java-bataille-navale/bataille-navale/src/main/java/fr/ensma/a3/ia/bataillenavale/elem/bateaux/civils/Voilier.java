@@ -1,6 +1,6 @@
 package fr.ensma.a3.ia.bataillenavale.elem.bateaux.civils;
 
-import fr.ensma.a3.ia.bataillenavale.affichage.Case;
+import fr.ensma.a3.ia.bataillenavale.elem.Case;
 import fr.ensma.a3.ia.bataillenavale.elem.bateaux.Bateau;
 import fr.ensma.a3.ia.bataillenavale.outils.ValParamException;
 
@@ -13,6 +13,6 @@ public class Voilier extends Bateau{
      * @throws ValParamException
      */
     public Voilier(Case[] c) throws ValParamException{
-        super(6, "Voilier", c, 2, 1);
+        super(6, "Voilier", 2, 1);
     }
 }

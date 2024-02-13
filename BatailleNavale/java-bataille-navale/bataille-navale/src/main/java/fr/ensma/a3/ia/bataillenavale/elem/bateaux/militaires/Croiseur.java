@@ -1,6 +1,5 @@
 package fr.ensma.a3.ia.bataillenavale.elem.bateaux.militaires;
 
-import fr.ensma.a3.ia.bataillenavale.affichage.Case;
 import fr.ensma.a3.ia.bataillenavale.elem.bateaux.Bateau;
 import fr.ensma.a3.ia.bataillenavale.outils.ValParamException;
 
@@ -15,7 +14,7 @@ public class Croiseur extends Bateau{
      * @throws ValParamException
      */
     public Croiseur() throws ValParamException{
-        super(2, "Croiseur", 4, 5);
+        super(2, "Croiseur", 4, 4);
         puissAtk = 4;
     }
 

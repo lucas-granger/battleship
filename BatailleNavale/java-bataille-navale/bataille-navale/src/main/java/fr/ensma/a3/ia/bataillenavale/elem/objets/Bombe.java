@@ -1,6 +1,6 @@
 package fr.ensma.a3.ia.bataillenavale.elem.objets;
 
-import fr.ensma.a3.ia.bataillenavale.affichage.Case;
+import fr.ensma.a3.ia.bataillenavale.elem.Case;
 import fr.ensma.a3.ia.bataillenavale.elem.ElementJeu;
 import fr.ensma.a3.ia.bataillenavale.outils.ValParamException;
 
@@ -13,7 +13,7 @@ public class Bombe extends ElementJeu{
      * @throws ValParamException
      */
     public Bombe(Case[] c) throws ValParamException{
-        super(c, 3, 1);
+        super(1, 3);
     }
     
 }

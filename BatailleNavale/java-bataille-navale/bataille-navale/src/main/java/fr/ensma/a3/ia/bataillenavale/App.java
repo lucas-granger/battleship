@@ -1,12 +1,6 @@
 package fr.ensma.a3.ia.bataillenavale;
 
-import fr.ensma.a3.ia.bataillenavale.affichage.Joueur;
 import fr.ensma.a3.ia.bataillenavale.affichage.Plateau;
-import fr.ensma.a3.ia.bataillenavale.elem.bateaux.militaires.ContreTorpilleur;
-import fr.ensma.a3.ia.bataillenavale.elem.bateaux.militaires.Croiseur;
-import fr.ensma.a3.ia.bataillenavale.elem.bateaux.militaires.PorteAvions;
-import fr.ensma.a3.ia.bataillenavale.elem.bateaux.militaires.SousMarin;
-import fr.ensma.a3.ia.bataillenavale.elem.bateaux.militaires.Torpilleur;
 import fr.ensma.a3.ia.bataillenavale.outils.ValParamException;
 
 /**
@@ -17,8 +11,26 @@ public class App {
     public static void main(String[] args) {
         System.out.println("Bataille Navale");
         try{
-            //genererPlateau(10, 10);
-            Plateau plateau = new Plateau();
+            Plateau plateau1 = new Plateau();
+            //Plateau plateau2 = new Plateau();
+
+            System.out.println(plateau1.toString());
+            plateau1.placerBateaux();
+
+            // Case case2 = plateau2.getCoord(0, 1);
+            // case2.rejoindreCase(flotte2[1]);
+
+            // try {
+            //     case1.subirAttaque();
+            // } catch (TransitionException e) {
+            //     System.err.println("Exception");
+            // } 
+
+            // try {
+            //     case1.subirAttaque();
+            // } catch (TransitionException e) {
+            //     System.err.println("Exception");
+            // } 
 
         }
         catch (final ValParamException ex) {

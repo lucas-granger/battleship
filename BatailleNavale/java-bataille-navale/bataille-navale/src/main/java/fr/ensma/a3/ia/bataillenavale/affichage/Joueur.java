@@ -2,18 +2,13 @@ package fr.ensma.a3.ia.bataillenavale.affichage;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.ObjectInputFilter.Config;
-import java.util.List;
-import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine.Help.TextTable.Cell;
 
+import fr.ensma.a3.ia.bataillenavale.elem.Case;
+import fr.ensma.a3.ia.bataillenavale.elem.ElementJeu;
 import fr.ensma.a3.ia.bataillenavale.elem.bateaux.Bateau;
-import fr.ensma.a3.ia.bataillenavale.elem.bateaux.militaires.PorteAvions;
-import fr.ensma.a3.ia.bataillenavale.outils.GestionCoordonnees;
-import fr.ensma.a3.ia.bataillenavale.outils.GestionFlotte;
 import fr.ensma.a3.ia.bataillenavale.outils.ValParamException;
 
 /**
@@ -63,25 +58,34 @@ public class Joueur {
         pseudo = p;
     }
 
-    public void placerBateaux(){
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        for (int i = 0; i <plateau.getBateaux().length; i++) {
-            //Choix Case + direction
-            String input = "";
-            try{
-                input = in.readLine();
-            } catch (java.io.IOException ex){
-                System.out.println("Erreur : " + ex);
-            }
-            if (Pattern.matches("^[HVhv][abcdefghijABCDEFGHIJ][1-9][0]{0,1}", input)) {
-                    String direction = input.substring(0, 1).toUpperCase();
-                    Integer x = Integer .valueOf(input.substring(2)) - 1;
-                    Integer y = Integer .valueOf(GestionCoordonnees.lettreANombre(input.substring(1, 2).toUpperCase()));
-                    Case[] coordBat = plateau.getBateaux().generateBoatCoordinates(x, y, direction, boatSize, Integer .valueOf(Config.getBoatsConfig(i)[0]));
+    /**
+     * Attaque un bateau adverse
+     */
+    //TODO : Créer une fonction qui vérifie que l'attaquant est bien un IAttaquant
+    //       Sysout(attaquant.getName + " attaque !")
+    //       Demander la cible
+    //       if (cible.getAbonnes instanceOf() IVisible)
+    //          ("Aie ca fait mal")
+    //       cible.setNivVie(cible.getNivVie() - attaquant.getPuissAtk())
+    @Override
+    public void aLAttaque(final Case cible){
+        Integer id = 0;
 
-
-            }
+        /* Choix de l'attaquant */
+        try {
+            BufferedReader index = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Avec quel bateau voulez-vous attaquer ?");
+            id = Integer.valueOf(index.readLine());
+        } catch (Exception e) {
+            System.out.println("Une erreur est survenue : " + e);
         }
+        Bateau bateau = plateau.getBateau(id);
+
+        
+        erreurAtk
+        System.out.println("Vous avez choisi le " + bateau.getName() + ".");
+
+        /* Choix de la cible */
     }
 
     /**

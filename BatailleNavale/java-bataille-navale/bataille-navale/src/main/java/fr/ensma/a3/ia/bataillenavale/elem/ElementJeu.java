@@ -1,13 +1,10 @@
 package fr.ensma.a3.ia.bataillenavale.elem;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import fr.ensma.a3.ia.bataillenavale.affichage.Case;
 import fr.ensma.a3.ia.bataillenavale.outils.ValParamException;
 
 /**
@@ -20,6 +17,7 @@ import fr.ensma.a3.ia.bataillenavale.outils.ValParamException;
  */
 public abstract class ElementJeu implements IElementJeu {
 
+    private Integer id;
     private Integer resistance;
     private Integer taille;
     private Case[] coord;
@@ -89,18 +87,16 @@ public abstract class ElementJeu implements IElementJeu {
         return resistance;
     }
     
+    public Integer getId() {
+        return id;
+    }
+
     /**
      * Redéfinition de toString.
      */
     @Override
     public String toString() {
-        return toString();
-    }
-
-    @Override
-    public void etreTouche() {
-        // TODO Auto-generated method stub
-        
+        return "res = " + resistance + ", taille = " + taille;
     }
 
     /**

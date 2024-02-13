@@ -1,6 +1,4 @@
-package fr.ensma.a3.ia.bataillenavale.affichage;
-
-import fr.ensma.a3.ia.bataillenavale.elem.IElementJeu;
+package fr.ensma.a3.ia.bataillenavale.elem;
 
 /**
  * Typage pour Observable
@@ -15,16 +13,12 @@ public interface ICase {
      * Permet de rejoindre une case
      * @param obs l'élément qui rejoint la case
      */
-    void rejoindreCase(final IElementJeu obs);
+    void rejoindreCase(final ElementJeu obs);
 
     /**
      * Permet de quitter la case
      * @param obs l'élément quittant la case
      */
-    void quitterCase(final IElementJeu obs);
+    void quitterCase(final ElementJeu obs);
 
-    /**
-     * TODO Vérif utilité 
-     */
-    void etreTouche();
 }

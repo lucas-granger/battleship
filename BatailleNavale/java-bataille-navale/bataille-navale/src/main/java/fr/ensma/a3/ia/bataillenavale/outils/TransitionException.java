@@ -1,14 +1,14 @@
 package fr.ensma.a3.ia.bataillenavale.outils;
 
-public class IllegalArgumentException extends Exception{
-    
+public class TransitionException extends Exception {
+
     private String message;
-    
-    public IllegalArgumentException() {
+
+    public TransitionException() {
         message = "";
     }
-    
-    public IllegalArgumentException(final String mess) {
+
+    public TransitionException(final String mess) {
         message = mess;
     }
 
@@ -16,4 +16,5 @@ public class IllegalArgumentException extends Exception{
     public String getMessage() {
         return message + " --> " + super.getMessage();
     }
+
 }

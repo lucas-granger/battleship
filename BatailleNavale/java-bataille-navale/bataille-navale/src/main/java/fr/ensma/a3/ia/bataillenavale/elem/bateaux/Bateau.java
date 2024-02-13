@@ -1,20 +1,15 @@
 package fr.ensma.a3.ia.bataillenavale.elem.bateaux;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.ObjectInputFilter.Config;
-import java.util.regex.Pattern;
-
-import fr.ensma.a3.ia.bataillenavale.affichage.Case;
 import fr.ensma.a3.ia.bataillenavale.elem.ElementJeu;
-import fr.ensma.a3.ia.bataillenavale.outils.GestionCoordonnees;
 import fr.ensma.a3.ia.bataillenavale.outils.ValParamException;
 
 public abstract class Bateau extends ElementJeu{
 
-    protected Integer id;
-    private String nom;
-    private String dir;
+    protected Integer id;   // identifiant associé à un bateau
+    private String nom;     // nom du bateau
+    private String dir;     // direction du bateau (Horizontale ou verticale)
+
+    /*************************INITIALISATION********************************/
 
     /**
      * Instancie un Bateau.
@@ -31,6 +26,8 @@ public abstract class Bateau extends ElementJeu{
         nom = n;
         id = num;
     }
+
+    /*************************GETTERS ET SETTERS********************************/
 
     /**
      * Renvoie l'identifiant du bateau
@@ -58,35 +55,21 @@ public abstract class Bateau extends ElementJeu{
         return dir;
     }
 
+    /**
+     * Met à jour la direction du bateau
+     * 
+     * @param d
+     * 
+     * @return void
+     */
     public void setDir(String d) {
         dir = d;
     }
 
-    public Case[] placerBateau(Bateau bat){
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            // Choix Case + direction
-        String input = "";
-        try {
-            input = in.readLine();
-        } catch (java.io.IOException ex) {
-            System.out.println("Erreur : " + ex);
-        }
-        if (Pattern.matches("^[HVhv][abcdefghijABCDEFGHIJ][1-9][0]{0,1}", input)) {
-            String direction = input.substring(0, 1).toUpperCase();
-            Integer x = Integer.valueOf(input.substring(2)) - 1;
-            Integer y = Integer.valueOf(GestionCoordonnees.lettreANombre(input.substring(1, 2).toUpperCase()));
-            bat.setDir(direction);
-            Case[] coordBat = new Case[bat.getTaille()];
-            for (int index = 0; index < bat.getTaille(); index++) {
-                if (bat.getDirection() == "H"){
-                    coordBat[index] = new Case(x, y);
-                    
-                    
+    /*************************AUTRES FONCTIONS********************************/
 
-                }
-  
-            }
-        }
-        return coordBat;
+    @Override
+    public String toString() {
+        return "Bateau [id = " + id + ", nom = " + nom + ", dir = " + dir + ", " + super.toString() + "]";
     }
 }

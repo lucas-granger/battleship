@@ -1,12 +1,11 @@
 package fr.ensma.a3.ia.bataillenavale.elem.bateaux.militaires;
 
-import fr.ensma.a3.ia.bataillenavale.affichage.Case;
 import fr.ensma.a3.ia.bataillenavale.elem.bateaux.Bateau;
 import fr.ensma.a3.ia.bataillenavale.outils.ValParamException;
 
 public class ContreTorpilleur extends Bateau{
     
-    private Integer  puissAtk;
+    private Integer puissAtk;
 
     /**
      * Instancie un Contre-Torpilleur.
